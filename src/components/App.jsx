@@ -22,7 +22,7 @@ export default class App extends Component {
     const contact = { id: nanoid(), name, number };
     const names = [];
     this.state.contacts.map(item => {
-      names.push(item.name);
+      return names.push(item.name);
     });
     if (names.includes(contact.name)) {
       return alert('This contact already exists!');
