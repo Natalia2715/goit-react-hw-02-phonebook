@@ -1,9 +1,10 @@
 import styles from './ContactListElement.module.css';
 import PropTypes from 'prop-types';
 
-export default function ContactListElement({ contactList, onDeleteContact }) {
-  return contactList.map(({ id, name, number }) => (
-    <li className={styles.contact__item} key={id}>
+export default function ContactListElement({ item, onDeleteContact }) {
+  const { id, name, number } = item;
+  return (
+    <li className={styles.contact__item}>
       <p className={styles.contact__name}>
         {name}: {number}
       </p>
@@ -17,7 +18,7 @@ export default function ContactListElement({ contactList, onDeleteContact }) {
         Delete
       </button>
     </li>
-  ));
+  );
 }
 
 ContactListElement.propTypes = {

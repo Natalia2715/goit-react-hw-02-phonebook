@@ -22,9 +22,9 @@ export default class App extends Component {
     const contact = { id: nanoid(), name, number };
     const names = [];
     this.state.contacts.map(item => {
-      return names.push(item.name);
+      return names.push(item.name.toLowerCase());
     });
-    if (names.includes(contact.name)) {
+    if (names.includes(contact.name.toLowerCase())) {
       return alert('This contact already exists!');
     } else {
       this.setState(({ contacts }) => ({
@@ -62,10 +62,13 @@ export default class App extends Component {
         <h2 style={{ marginLeft: 20 }}>Contacts</h2>
         <Filter onChange={this.changeFilter} value={this.state.filter} />
         <ContactList>
-          <ContactListElement
-            contactList={visibleContacts}
-            onDeleteContact={this.deleteContact}
-          />
+          {visibleContacts.map(item => (
+            <ContactListElement
+              key={item.id}
+              item={item}
+              onDeleteContact={this.deleteContact}
+            />
+          ))}
         </ContactList>
       </div>
     );
